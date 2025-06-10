@@ -1,4 +1,4 @@
-/* Reset global e base */
+/* Reset básico */
 * {
   margin: 0;
   padding: 0;
@@ -7,102 +7,140 @@
 
 :root {
   font-family: "Alice", serif;
+  font-weight: 400;
+  font-style: normal;
   color: lch(52.6% 59.33 339.1);
+  --primary-color: lch(52.6% 59.33 339.1);
+  --hover-color: #6a1b9a;
+  --background-color: lab(6.56% 24.63 0.19);
 }
 
 body {
-  background-color: lab(6.56% 24.63 0.19);
-  line-height: 1.6;
+  background-color: var(--background-color);
+  font-family: inherit;
+  color: var(--primary-color);
+  line-height: 1.5;
 }
 
-/* Container principal */
 #page {
-  width: 100%;
-  max-width: 1200px;
+  width: auto;
+  border-radius: 24px;
   margin: 48px auto;
-  padding: 0 20px;
+  padding: 0 16px 48px;
 }
 
-/* Imagens com borda esfumada e responsivas */
-.img {
+/* Imagens */
+#img {
   border-radius: 12px;
   display: block;
-  width: 100%;
-  max-width: 600px;
-  margin: 20px auto;
-  mask-image: radial-gradient(circle, black 75%, transparent 100%);
+  width: 50%;
+  margin: 0 auto 24px auto;
+  mask-image: radial-gradient(circle, hsl(0, 0%, 4%) 75%, rgba(0, 0, 0, 0) 100%);
+  -webkit-mask-composite: destination-in;
   mask-composite: intersect;
 }
 
 /* Títulos */
-h1, h2 {
+h1,
+h2 {
+  font-size: 25px;
   text-align: center;
-  font-size: 28px;
-  margin: 20px 0;
+  margin-bottom: 12px;
 }
 
-/* Parágrafos e listas */
-p, ul {
-  font-size: 18px;
-  margin-bottom: 20px;
+/* Parágrafos */
+p {
+  margin-bottom: 24px;
+  font-size: 1rem;
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  color: var(--primary-color);
 }
 
-/* Header com botões de navegação */
-header {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: #0f0f0f;
-  padding: 15px 10px;
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 15px;
-  z-index: 1000;
+/* Listas */
+ul {
+  max-width: 720px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  color: var(--primary-color);
+  font-weight: 600;
 }
 
+/* Links do menu (botão) */
 .botao {
-  background-color: #ffffff22;
-  color: white;
   text-decoration: none;
-  padding: 10px 16px;
-  border-radius: 20px;
-  font-size: 16px;
-  transition: background 0.3s;
+  font-weight: 600;
+  color: var(--primary-color);
+  padding: 8px 14px;
+  border-radius: 6px;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .botao:hover {
-  background-color: #ffffff55;
+  background-color: var(--hover-color);
+  color: white;
 }
 
-/* Responsividade */
+/* Menu Navbar */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255 255 255 / 0.9);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  padding: 12px 0;
+  z-index: 1000;
+  font-family: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Menu container - desktop */
+.menu {
+  display: flex;
+  gap: 24px;
+}
+
+/* Checkbox escondido */
+#menu-toggle {
+  display: none;
+}
+
+/* Ícone hambúrguer */
+.menu-icon {
+  display: none;
+  font-size: 32px;
+  color: var(--primary-color);
+  cursor: pointer;
+  user-select: none;
+  padding: 0 16px;
+}
+
+/* Responsivo: mobile */
 @media (max-width: 768px) {
-  h1, h2 {
-    font-size: 22px;
+  .menu-icon {
+    display: block;
   }
 
-  p, ul {
-    font-size: 16px;
-  }
-
-  header {
+  .menu {
+    position: fixed;
+    top: 56px;
+    left: 0;
+    right: 0;
+    background: rgba(255 255 255 / 0.95);
     flex-direction: column;
     align-items: center;
+    gap: 16px;
+    padding: 16px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    display: none;
   }
 
-  .botao {
-    font-size: 16px;
-    width: 90%;
-    text-align: center;
-  }
-
-  .img {
-    width: 100%;
-    max-width: 100%;
-  }
-
-  #page {
-    margin: 20px auto;
-    padding: 0 10px;
+  #menu-toggle:checked + .menu-icon + .menu {
+    display: flex;
   }
 }
