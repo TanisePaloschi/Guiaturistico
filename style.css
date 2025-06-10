@@ -1,28 +1,21 @@
-/* Reset básico */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 :root {
+  --primary-color: lch(52.6% 59.33 339.1);
+  --hover-color: #c94c4c;
   font-family: "Alice", serif;
   font-weight: 400;
   font-style: normal;
-  color: lch(52.6% 59.33 339.1);
-  --primary-color: lch(52.6% 59.33 339.1);
-  --hover-color: #6a1b9a;
-  --background-color: lab(6.56% 24.63 0.19);
+  color: var(--primary-color);
 }
 
 body {
-  background-color: var(--background-color);
-  font-family: inherit;
-  color: var(--primary-color);
-  line-height: 1.5;
+  background-color: lab(6.56% 24.63 0.19);
+  margin: 0;
+  padding: 0;
 }
 
+/* Container principal */
 #page {
+  box-sizing: border-box;
   width: auto;
   border-radius: 24px;
   margin: 48px auto;
@@ -33,11 +26,13 @@ body {
 #img {
   border-radius: 12px;
   display: block;
-  width: 50%;
+  width: 70%;
   margin: 0 auto 24px auto;
   mask-image: radial-gradient(circle, hsl(0, 0%, 4%) 75%, rgba(0, 0, 0, 0) 100%);
   -webkit-mask-composite: destination-in;
   mask-composite: intersect;
+  image-rendering: auto;
+  transition: mask-image 0.3s ease;
 }
 
 /* Títulos */
@@ -122,6 +117,14 @@ ul {
 
 /* Responsivo: mobile */
 @media (max-width: 768px) {
+  /* Remove a máscara para manter nitidez em telas pequenas */
+  #img {
+    width: 100%;
+    mask-image: none !important;
+    -webkit-mask-composite: unset !important;
+    mask-composite: unset !important;
+  }
+
   .menu-icon {
     display: block;
   }
